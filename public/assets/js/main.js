@@ -34,3 +34,4 @@ function giveCards() {
 }
 
 button.addEventListener('click', giveCards);
+//# sourceMappingURL=main.js.map
