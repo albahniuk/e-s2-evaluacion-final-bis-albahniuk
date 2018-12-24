@@ -13,25 +13,27 @@ function giveCards() {
             .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
+                    const pokemon = data[i].image;
                     cardsContainer.innerHTML += `
-                    <div>
+                    <div class="card">
                     <img class="img" src='${imgDefault}' alt='pokemon'>
+                    </div>
+                    <img class="img" src='${pokemon}' alt='pokemon'>
                     </div>`
+
                     }
                     const img = document.querySelectorAll('.img');
-
                     img.addEventListener('click', showCard);
-
-                    function showCard(e) {
-                        const selectedCard = e.currentTarget;
-                        const image = data[i].image;
-                        console.log('Hola');
-                        selectedCard.src = `'${image}'`;
-                    
-                }
+                    function showCard(e);
             });
     }
 }
 
 button.addEventListener('click', giveCards);
+
+function showCard(e) {
+    const selectedCard = e.currentTarget;
+    console.log(selectedCard);
+    img.src = `'${pokemon}'`;
+}
 //# sourceMappingURL=main.js.map
