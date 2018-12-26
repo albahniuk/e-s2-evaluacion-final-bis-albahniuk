@@ -7,6 +7,7 @@ const button = document.querySelector('.header__btn');
 const imgDefault = 'assets/images/ffffff.png';
 
 function giveCards() {
+    cardsContainer.innerHTML = '';
     let inputUser = document.querySelector('input[name="numbercards"]:checked');
     if(inputUser !== null) {
         fetch(urlApi + inputUser.value + '.json')
@@ -16,24 +17,18 @@ function giveCards() {
                     const pokemon = data[i].image;
                     cardsContainer.innerHTML += `
                     <div class="card">
-                    <img class="img" src='${imgDefault}' alt='pokemon'>
-                    </div>
-                    <img class="img" src='${pokemon}' alt='pokemon'>
+                    <img class="img" src='${imgDefault}' alt='pokemon' onclick='showCard(this, "${pokemon}")'>
                     </div>`
-
-                    }
-                    const img = document.querySelectorAll('.img');
-                    img.addEventListener('click', showCard);
-                    function showCard(e);
+                }
             });
     }
 }
 
 button.addEventListener('click', giveCards);
 
-function showCard(e) {
-    const selectedCard = e.currentTarget;
-    console.log(selectedCard);
-    img.src = `'${pokemon}'`;
+function showCard(img, pokemon) {
+    img.src = pokemon;
 }
+
+
 //# sourceMappingURL=main.js.map
