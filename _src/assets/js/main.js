@@ -15,9 +15,10 @@ function giveCards() {
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
                     const pokemon = data[i].image;
+                    const pair = data[i].pair;
                     cardsContainer.innerHTML += `
                     <div class="card">
-                    <img class="img" src='${imgDefault}' alt='pokemon' onclick='showCard(this, "${pokemon}")'>
+                    <img class="img" src='${imgDefault}' alt='pokemon' onclick='showCard(this, "${pokemon}", "${pair}")'>
                     </div>`
                 }
             });
@@ -26,7 +27,20 @@ function giveCards() {
 
 button.addEventListener('click', giveCards);
 
-function showCard(img, pokemon) {
+function showCard(img, pokemon, pair) {
     img.src = pokemon;
+    let selectedCard = document.querySelector('.selected');
+    if(selectedCard === null){
+        img.classList.add('selected');
+        img.classList.add(pair);
+    } else {
+        if(!selectedCard.classList.contains(pair)) {
+            setTimeout(function(){
+                selectedCard.src = imgDefault;
+                img.src = imgDefault;
+            }, 1000); 
+        }
+        selectedCard.classList.remove('selected');
+    }
 }
 
